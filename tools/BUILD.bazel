@@ -1,0 +1,22 @@
+load("@rules_haskell//haskell:defs.bzl", "haskell_binary")
+
+haskell_binary(
+    name = "toxxi",
+    srcs = ["toxxi.hs"],
+    ghcopts = ["-threaded"],
+    tags = ["no-cross"],
+    deps = [
+        "//hs-toxxi",
+        "//third_party/haskell:base",
+        "//third_party/haskell:brick",
+        "//third_party/haskell:bytestring",
+        "//third_party/haskell:microlens",
+        "//third_party/haskell:microlens-mtl",
+        "//third_party/haskell:microlens-th",
+        "//third_party/haskell:text",
+        "//third_party/haskell:text-zipper",
+        "//third_party/haskell:vector",
+        "//third_party/haskell:vty",
+        "//third_party/haskell:word-wrap",
+    ],
+)

@@ -1,0 +1,31 @@
+load("@rules_haskell//haskell:defs.bzl", "haskell_library")
+load("//third_party/haskell/hspec-discover:build_defs.bzl", "hspec_test")
+load("//tools/project:build_defs.bzl", "project")
+
+project(license = "gpl3-https")
+
+haskell_library(
+    name = "hs-toxxi",
+    srcs = glob(["src/**/*.*hs"]),
+    src_strip_prefix = "src",
+    tags = ["no-cross"],
+    version = "0.0.1",
+    visibility = ["//hs-toxxi:__subpackages__"],
+    deps = [
+        #"//hs-toxcore-c",
+        "//third_party/haskell:base",
+        "//third_party/haskell:brick",
+    ],
+)
+
+hspec_test(
+    name = "testsuite",
+    size = "small",
+    visibility = ["//hs-toxxi:__subpackages__"],
+    deps = [
+        ":hs-toxxi",
+        "//third_party/haskell:QuickCheck",
+        "//third_party/haskell:base",
+        "//third_party/haskell:hspec",
+    ],
+)
